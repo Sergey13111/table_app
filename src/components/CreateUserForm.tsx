@@ -1,33 +1,38 @@
 import { useAppDispatch } from '../hook/hooks'
 
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import 'yup-phone'
 import * as yup from 'yup'
 
 import { Button, Box, TextField } from '@mui/material'
 import { createUser, getUsers } from '../store/users/usersSlice'
+import { IUser } from '../models/IUser'
+
+type CreateUserProps = {
+	onClose: () => void
+}
 
 const schema = yup
 	.object({
 		name: yup.string().required(),
-		emaile: yup.string().required().email(),
+		email: yup.string().required().email(),
 		phone: yup.string().phone().required(),
 		website: yup.string().required().url(),
 		company: yup.string().required(),
 	})
 	.required()
-const CreateUserForm = ({ onClose }: any) => {
+const CreateUserForm: React.FC<CreateUserProps> = ({ onClose }) => {
 	const {
 		handleSubmit,
 		control,
 		formState: { errors },
 		reset,
-	} = useForm({
+	} = useForm<IUser>({
 		resolver: yupResolver(schema),
 		defaultValues: {
 			name: '',
-			emaile: '',
+			email: '',
 			phone: '+38',
 			website: '',
 			company: '',
@@ -36,7 +41,7 @@ const CreateUserForm = ({ onClose }: any) => {
 
 	const dispatch = useAppDispatch()
 
-	const handleCreateUser = (data: any) => {
+	const handleCreateUser: SubmitHandler<IUser> = (data) => {
 		dispatch(createUser(data)).then((res) => {
 			dispatch(getUsers())
 			onClose()
@@ -59,7 +64,7 @@ const CreateUserForm = ({ onClose }: any) => {
 								<TextField
 									{...field}
 									label='Name'
-									// error={errors.name}
+									error={Boolean(errors.name)}
 									helperText={errors.name?.message}
 								/>
 							)}
@@ -68,14 +73,14 @@ const CreateUserForm = ({ onClose }: any) => {
 
 					<Box my={2}>
 						<Controller
-							name='emaile'
+							name='email'
 							control={control}
 							render={({ field }) => (
 								<TextField
 									{...field}
-									label='Emaile'
-									// error={errors.nickName}
-									helperText={errors.emaile?.message}
+									label='Email'
+									error={Boolean(errors.email)}
+									helperText={errors.email?.message}
 								/>
 							)}
 						/>
@@ -89,7 +94,7 @@ const CreateUserForm = ({ onClose }: any) => {
 								<TextField
 									{...field}
 									label='Phone'
-									// error={errors.phone}
+									error={Boolean(errors.phone)}
 									helperText={errors.phone?.message}
 								/>
 							)}
@@ -104,7 +109,7 @@ const CreateUserForm = ({ onClose }: any) => {
 								<TextField
 									{...field}
 									label='Website'
-									// error={errors.website}
+									error={Boolean(errors.website)}
 									helperText={errors.website?.message}
 								/>
 							)}
@@ -119,7 +124,7 @@ const CreateUserForm = ({ onClose }: any) => {
 								<TextField
 									{...field}
 									label='Company'
-									// error={errors.company}
+									error={Boolean(errors.company)}
 									helperText={errors.company?.message}
 								/>
 							)}

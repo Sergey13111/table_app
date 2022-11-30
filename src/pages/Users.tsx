@@ -65,7 +65,7 @@ const Users: React.FC = () => {
 							<TableRow>
 								<TableCell sx={{ fontSize: 18, fontWeight: 600 }}>#</TableCell>
 								<TableCell sx={{ fontSize: 18, fontWeight: 600 }}>Name</TableCell>
-								<TableCell sx={{ fontSize: 18, fontWeight: 600 }}>Emaile</TableCell>
+								<TableCell sx={{ fontSize: 18, fontWeight: 600 }}>Email</TableCell>
 								<TableCell sx={{ fontSize: 18, fontWeight: 600 }}>Phone</TableCell>
 								<TableCell sx={{ fontSize: 18, fontWeight: 600 }}>Website</TableCell>
 								<TableCell sx={{ fontSize: 18, fontWeight: 600 }}>Company</TableCell>
@@ -73,7 +73,7 @@ const Users: React.FC = () => {
 						</TableHead>
 						<TableBody>
 							{users &&
-								users.map(({ id, name, emaile, phone, website, company }, index) => (
+								users.map(({ id, name, email, phone, website, company }, index) => (
 									<TableRow
 										key={id}
 										sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -83,7 +83,7 @@ const Users: React.FC = () => {
 											{index + 1}
 										</TableCell>
 										<TableCell>{name}</TableCell>
-										<TableCell>{emaile}</TableCell>
+										<TableCell>{email}</TableCell>
 										<TableCell>{phone}</TableCell>
 										<TableCell>{website}</TableCell>
 										<TableCell>{company}</TableCell>

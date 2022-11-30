@@ -1,23 +1,13 @@
 import axios from '../../helpers/axios'
-
-type User = {
-	id: number
-	name: string
-	nickName: string
-	phone: string
-	website: string
-	company: string
-}
+import { IUser } from '../../models/IUser'
 
 const getUsers = async () => {
-	const users = await axios.get<User[]>('/users')
+	const users = await axios.get<IUser[]>('/users')
 	return users
 }
 
-const createUser = async (userData: any) => {
+const createUser = async (userData: IUser) => {
 	const user = await axios.post('/users', userData)
-
-	console.log(user.data)
 	return user.data
 }
 

@@ -1,33 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { StringDecoder } from 'string_decoder'
-
 import usersService from '../services/usersService'
+import { IUser } from '../../models/IUser'
 
-type User = {
-	id: number
-	name: string
-	emaile: string
-	phone: string
-	website: string
-	company: string
-}
 interface UsersSliceState {
-	users: User[] | null
-	// isError: boolean
+	users: IUser[] | null
 	isLoading: boolean
-	// message: string | null
 }
 
 export const getUsers = createAsyncThunk('USERS', async (_, thunkAPI) => {
 	try {
 		return await usersService.getUsers()
 	} catch (error: any) {
-		// return thunkAPI.rejectWithValue(error.response)
-		return thunkAPI.rejectWithValue('error')
+		return thunkAPI.rejectWithValue(error.response)
+		// return thunkAPI.rejectWithValue('error')
 	}
 })
 
-export const createUser = createAsyncThunk<User, StringDecoder>(
+export const createUser = createAsyncThunk<IUser, IUser>(
 	'CREATE_USER',
 	async (userData, thunkAPI) => {
 		try {
@@ -40,9 +29,7 @@ export const createUser = createAsyncThunk<User, StringDecoder>(
 
 const initialState: UsersSliceState = {
 	users: [],
-	// isError: false,
 	isLoading: false,
-	// message: '',
 }
 
 const usersSlice = createSlice({
@@ -59,8 +46,6 @@ const usersSlice = createSlice({
 		})
 		builder.addCase(getUsers.rejected, (state) => {
 			state.isLoading = false
-			// state.isError = true
-			// state.message = action.payload.message
 			state.users = null
 		})
 
@@ -74,7 +59,6 @@ const usersSlice = createSlice({
 		})
 		builder.addCase(createUser.rejected, (state) => {
 			state.isLoading = false
-			// state.isError = true
 		})
 	},
 })
