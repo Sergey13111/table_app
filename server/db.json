@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "name": "Mark",
+      "emaile": "test@test.com",
+      "phone": "+38063-00-00-000",
+      "website": "https://jobs.dou.ua/",
+      "company": "Dell",
+      "id": 5
+    },
+    {
+      "name": "Jone",
+      "emaile": "atest@test.com",
+      "phone": "+38063-00-00-000",
+      "website": "https://mui.com",
+      "company": "MUI",
+      "id": 6
+    },
+    {
+      "name": "Tom",
+      "emaile": "yytest@test.com",
+      "phone": "+38063-00-00-000",
+      "website": "https://www.npmjs.com",
+      "company": "Npmjs",
+      "id": 7
+    },
+    {
+      "name": "Bill",
+      "emaile": "terst@test.com",
+      "phone": "+38063-00-00-000",
+      "website": "https://react-hook-form.com",
+      "company": "Hook-Form",
+      "id": 8
+    },
+    {
+      "name": "David",
+      "emaile": "trrest@test.com",
+      "phone": "+38063-00-00-000",
+      "website": "https://redux-toolkit.js.org",
+      "company": "Redux",
+      "id": 9
+    }
+  ]
+}
