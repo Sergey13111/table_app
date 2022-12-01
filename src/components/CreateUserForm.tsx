@@ -33,7 +33,7 @@ const CreateUserForm: React.FC<CreateUserProps> = ({ onClose }) => {
 		defaultValues: {
 			name: '',
 			email: '',
-			phone: '+38',
+			phone: '',
 			website: '',
 			company: '',
 		},
